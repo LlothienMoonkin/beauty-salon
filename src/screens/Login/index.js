@@ -36,22 +36,36 @@ export default class Login extends React.Component {
             loading: false,
 
             role: 'admin',
+            isKeyboadVisible: false,
         };
     }
 
     async componentDidMount() {
-        this.listeners.push(
-            Keyboard.addListener('keyboardDidShow', this._keyboardDidShow),
-            Keyboard.addListener('keyboardDidHide', this._keyboardDidHide),
-        )
+        this.keyboardDidShowListener = Keyboard.addListener(
+            "keyboardDidShow",
+            this._keyboardDidShow
+        );
+        this.keyboardDidHideListener = Keyboard.addListener(
+            "keyboardDidHide",
+            this._keyboardDidHide
+        );
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
     }
 
     _keyboardDidShow = () => {
-
+        this.setState({
+            isKeyboadVisible: true
+        });
     };
 
     _keyboardDidHide = () => {
-        //if (this.textInput?._root) this.textInput._root.blur();
+        this.setState({
+            isKeyboadVisible: false
+        });
     };
 
     getUsers = async () => {
@@ -158,7 +172,9 @@ export default class Login extends React.Component {
                 />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.form}>
-                        <Image source={imageLogo} style={styles.logo}/>
+                        {!this.state.isKeyboadVisible &&
+                            <Image source={imageLogo} style={styles.logo}/>
+                        }
                         <View style={styles.block}>
                             <FormTextInput
                                 value={this.state.email}

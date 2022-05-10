@@ -17,6 +17,7 @@ import {
     AddServices,
 } from "../screens";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {totalSize} from "react-native-dimension";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +54,7 @@ export default function TabBar({route, navigation}) {
                 tabBarInactiveBackgroundColor: constants.colors.background,
                 tabBarKeyboardHidesTabBar: true,
                 tabBarShowLabel: true,
-                tabBarLabelStyle: { fontSize: 12 }
+                tabBarLabelStyle: { fontSize: totalSize(1.4) }
             })}
 
             backBehaviour={'initialRoute'}

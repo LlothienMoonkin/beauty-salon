@@ -2,6 +2,7 @@ import React from "react";
 import {StyleSheet, TouchableOpacity} from "react-native";
 import constants from "../../config/styles";
 import {Text} from "native-base";
+import {totalSize, width} from "react-native-dimension";
 
 export default class ServiceCard extends React.Component {
     render() {
@@ -21,8 +22,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: constants.colors.background,
         height: 70,
-        width: "30%",
-        minWidth: 95,
+        width: width(28),
+        //minWidth: 95,
         borderColor: constants.colors.PINK,
         borderRadius: 10,
         borderWidth: 1.5,
@@ -36,6 +37,6 @@ const styles = StyleSheet.create({
         color: constants.colors.PINK,
         textAlign: "center",
         fontFamily: "Mulish-Bold",
-        fontSize: 12,
+        fontSize: totalSize(1.5),
     }
 })

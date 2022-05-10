@@ -7,6 +7,7 @@ import {FormTextInput} from "../../components";
 import {Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {totalSize} from "react-native-dimension";
 
 export default class EditClients extends React.Component {
     listeners = [];
@@ -229,7 +230,7 @@ export default class EditClients extends React.Component {
             <HStack bg={constants.colors.PINK} py="3" justifyContent="space-between" alignItems="center" w="100%" h="55" position="absolute">
                 <Box flexDirection="row" alignItems="center">
                     <IconButton icon={<Icon size="lg" as={Ionicons} name="arrow-back-outline" color="white" />} onPress={this.goToClients}/>
-                    <Text color="white" fontSize="20" style={styles.latoHeader}>
+                    <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                         {this.state.lastName} {this.state.firstName}
                     </Text>
                 </Box>
@@ -439,7 +440,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Mulish-Regular",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginTop: 10,
         marginBottom: 20,
         color: constants.colors.GREY,
@@ -453,7 +454,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     userImage: {
         width: 125,

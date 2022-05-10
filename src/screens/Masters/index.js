@@ -6,6 +6,7 @@ import axios from "../../helpers/axios";
 import {MasterCard} from "../../components";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {totalSize} from "react-native-dimension";
 
 export default class Masters extends React.Component {
     listeners = [];
@@ -77,7 +78,7 @@ export default class Masters extends React.Component {
     renderHeader = () => {
         return(
             <HStack bg={constants.colors.PINK} px="5" py="3" justifyContent="space-between" alignItems="center" w="100%" h="55" position="absolute">
-                <Text color="white" fontSize="20" style={styles.latoHeader}>
+                <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                     Мастера
                 </Text>
             </HStack>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Mulish-Regular",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginTop: 10,
         marginBottom: 20,
         color: constants.colors.GREY,
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     fab: {
         flex: 1,

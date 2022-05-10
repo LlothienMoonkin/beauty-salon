@@ -5,6 +5,7 @@ import constants from "../../config/styles";
 import imageLogo from "../../../assets/logo.png";
 import {ServiceCard} from "../../components"
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
+import {height, totalSize} from "react-native-dimension";
 
 export default class About extends React.Component {
     listeners = [];
@@ -32,7 +33,7 @@ export default class About extends React.Component {
         return(
             <HStack bg={constants.colors.PINK} py="3" justifyContent="flex-start" alignItems="center" w="100%" h="55" position="absolute">
                 <IconButton icon={<Icon size="lg" as={Ionicons} name="arrow-back-outline" color="white" />} onPress={() => this.props.navigation.goBack()}/>
-                <Text color="white" fontSize="20" style={styles.latoHeader}>
+                <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                     О салоне
                 </Text>
             </HStack>
@@ -43,7 +44,7 @@ export default class About extends React.Component {
         return(
             <View style={styles.container}>
                 {this.renderHeader()}
-                <View style={styles.scrollView}>
+                <ScrollView style={{}} contentContainerStyle={{paddingHorizontal: 20}}>
                     <Image source={imageLogo} style={styles.logo}/>
                     <Text style={styles.latoText}>
                         Красота, комплименты, уверенность в себе — разве не каждый стремится к этим прекрасным вещам?
@@ -63,12 +64,12 @@ export default class About extends React.Component {
                         Телефон:{"\n"}
                         +91 99999 00000
                     </Text>
-                </View>
-                <View style={styles.social}>
-                    <Icon size="10" as={MaterialCommunityIcons} name="instagram" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
-                    <Icon size="10" as={FontAwesome} name="telegram" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
-                    <Icon size="10" as={FontAwesome} name="whatsapp" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
-                </View>
+                    <View style={styles.social}>
+                        <Icon size="10" as={MaterialCommunityIcons} name="instagram" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
+                        <Icon size="10" as={FontAwesome} name="telegram" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
+                        <Icon size="10" as={FontAwesome} name="whatsapp" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
+                    </View>
+                </ScrollView>
             </View>
         )
     }
@@ -86,20 +87,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     logo: {
-        flex: 1,
-        maxHeight: 100,
+        height: height(15),
+        maxHeight: height(15),
         resizeMode: "contain",
         alignSelf: "center",
         marginVertical: 30,
     },
     latoText: {
         fontFamily: "Lato-LightItalic",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginVertical: 10,
     },
     latoTextSmall: {
         fontFamily: "Lato-LightItalic",
-        fontSize: 14,
+        fontSize: totalSize(1.8),
         marginVertical: 10,
     },
     latoHeader: {
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     social: {
         flexDirection: "row",
         alignSelf: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 20,
     },
 })

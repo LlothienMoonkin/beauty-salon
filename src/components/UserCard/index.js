@@ -3,6 +3,7 @@ import {Image, StyleSheet, TouchableOpacity, View} from "react-native";
 import constants from "../../config/styles";
 import logo from "../../../assets/user-avatar.jpg";
 import {Text} from "native-base";
+import {totalSize} from "react-native-dimension";
 
 
 export default class UserCard extends React.Component {
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
         borderColor: constants.colors.GREY,
         alignItems: "center",
         paddingHorizontal: 10,
+        marginTop: 1,
     },
     containerText: {
         justifyContent: "center",
@@ -51,12 +53,12 @@ const styles = StyleSheet.create({
     },
     textSemiBold: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginVertical: 5,
     },
     textSemiBoldGrey: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 15,
+        fontSize: totalSize(1.9),
         marginBottom: 5,
         color: constants.colors.GREY,
     },

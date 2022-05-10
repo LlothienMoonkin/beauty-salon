@@ -3,6 +3,7 @@ import {StyleSheet, View} from "react-native";
 import constants from "../../config/styles";
 import {Icon, IconButton, Text} from "native-base";
 import {Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
+import {totalSize} from "react-native-dimension";
 
 
 export default class RecordCard extends React.Component {
@@ -49,17 +50,17 @@ const styles = StyleSheet.create({
     },
     textBold: {
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginBottom: 5,
     },
     textRegular: {
         fontFamily: "Mulish-Regular",
-        fontSize: 14,
+        fontSize: totalSize(1.8),
         marginBottom: 5,
     },
     textRegularGrey: {
         fontFamily: "Mulish-Regular",
-        fontSize: 14,
+        fontSize: totalSize(1.8),
         color: constants.colors.GREY,
     },
 })

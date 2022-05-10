@@ -6,6 +6,7 @@ import {ButtonSpinner, FormTextInput} from "../../components";
 import {Ionicons} from "@expo/vector-icons";
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {totalSize} from "react-native-dimension";
 
 export default class AddClients extends React.Component {
     listeners = [];
@@ -140,7 +141,7 @@ export default class AddClients extends React.Component {
             <HStack bg={constants.colors.PINK} py="3" justifyContent="space-between" alignItems="center" w="100%" h="55" position="absolute">
                 <Box flexDirection="row" alignItems="center">
                     <IconButton icon={<Icon size="lg" as={Ionicons} name="arrow-back-outline" color="white" />} onPress={this.goToClients}/>
-                    <Text color="white" fontSize="20" style={styles.latoHeader}>
+                    <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                         Добавить клиента
                     </Text>
                 </Box>
@@ -188,7 +189,7 @@ export default class AddClients extends React.Component {
         return(
             <View style={styles.container}>
                 {this.renderHeader()}
-                <ScrollView style={{width: "100%", paddingTop: 35}} contentContainerStyle={{alignItems: "center"}}>
+                <ScrollView style={{width: "100%"}} contentContainerStyle={{alignItems: "center"}}>
                     <View style={styles.form}>
                         <FormTextInput
                             value={lastName}
@@ -200,7 +201,7 @@ export default class AddClients extends React.Component {
                             onBlur={this.handleLastNameBlur}
                             error={lastNameError}
                             blurOnSubmit={Platform.OS === "ios"}
-                            style={{marginBottom: 5}}
+                            style={{marginBottom: 5, marginTop: 35}}
                         />
 
                         <FormTextInput
@@ -279,15 +280,14 @@ export default class AddClients extends React.Component {
                             style={{marginBottom: 5}}
                         />
                     </View>
+                    <ButtonSpinner
+                        label={'СОЗДАТЬ'}
+                        onPress={this.addClient}
+                        disabled={!firstName || !lastName || !patronymic || !role || !phone || !email || !password}
+                        loading={loading}
+                        style={{width: "70%", marginBottom: 20, marginTop: 10}}
+                    />
                 </ScrollView>
-
-                <ButtonSpinner
-                    label={'СОЗДАТЬ'}
-                    onPress={this.addClient}
-                    disabled={!firstName || !lastName || !patronymic || !role || !phone || !email || !password}
-                    loading={loading}
-                    style={{width: "80%", marginBottom: 50}}
-                />
             </View>
         )
     }
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Mulish-Regular",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginTop: 10,
         marginBottom: 20,
         color: constants.colors.GREY,
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     userImage: {
         width: 125,

@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Keyboard, StyleSheet, Image, TouchableOpacity, DeviceEventEmitter} from "react-native";
+import {View, Keyboard, StyleSheet, Image, TouchableOpacity, DeviceEventEmitter, ScrollView} from "react-native";
 import {Button, HStack, Icon, IconButton, Spinner, Text} from "native-base";
 import constants from "../../config/styles";
 import imageLogo from "../../../assets/logo.png";
@@ -7,6 +7,7 @@ import {ServiceCard} from "../../components"
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Ionicons, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
+import {height, totalSize, width} from 'react-native-dimension'
 
 const SERVER = 'http://app-langosh.wf2jtbscmm-eqg35n2o83xn.p.runcloud.link/api';
 
@@ -84,7 +85,7 @@ export default class Main extends React.Component {
     renderHeader = () => {
         return(
             <HStack bg={constants.colors.PINK} px="5" py="3" justifyContent="space-between" alignItems="center" w="100%" h="55">
-                <Text color="white" fontSize="20" style={styles.latoHeader}>
+                <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                     Главная
                 </Text>
             </HStack>
@@ -106,7 +107,7 @@ export default class Main extends React.Component {
         return(
             <View style={styles.container}>
                 {this.renderHeader()}
-                <View style={styles.containerSmall}>
+                <ScrollView style={{}} contentContainerStyle={{alignItems: "center", height: height(100)}}>
                     <Image source={imageLogo} style={styles.logo}/>
                     <Text style={styles.latoText}>
                         Подчеркни свою красоту в нашем салоне
@@ -125,25 +126,25 @@ export default class Main extends React.Component {
                                             description: item.description,
                                             price: item.price,
                                         })
-                                    :
+                                        :
                                         this.props.navigation.navigate('EditServices', {
                                             id: item.id,
                                         });
                                 }}/>
                             ))}
                             {role ==='admin' &&
-                                <TouchableOpacity style={styles.buttonAdd} onPress={() => this.props.navigation.navigate('AddServices')}>
-                                    <Icon size="10" as={MaterialCommunityIcons} name="plus" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
-                                </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttonAdd} onPress={() => this.props.navigation.navigate('AddServices')}>
+                                <Icon size="10" as={MaterialCommunityIcons} name="plus" color={constants.colors.PINK} style={{marginHorizontal: 10}}/>
+                            </TouchableOpacity>
                             }
                         </View>
                     </View>
-                </View>
-                <Button style={styles.button} onPress={() => {
-                    this.props.navigation.navigate('Инфо');
-                }}>
-                    <Text style={styles.textButton}>О САЛОНЕ</Text>
-                </Button>
+                    <Button style={styles.button} onPress={() => {
+                        this.props.navigation.navigate('Инфо');
+                    }}>
+                        <Text style={styles.textButton}>О САЛОНЕ</Text>
+                    </Button>
+                </ScrollView>
             </View>
         )
     }
@@ -153,8 +154,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: constants.colors.background,
-        alignItems: "center",
-        justifyContent: "space-between",
     },
     containerLoading: {
         flex: 1,
@@ -167,15 +166,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     logo: {
-        flex: 1,
-        maxHeight: 100,
+        height: height(15),
+        maxHeight: height(15),
         resizeMode: "contain",
         alignSelf: "center",
         marginVertical: 30,
     },
     latoText: {
         fontFamily: "Lato-ThinItalic",
-        fontSize: 20,
+        fontSize: totalSize(2.5),
         textAlign: "center",
     },
     latoHeader: {
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     },
     textHeader: {
         fontFamily: "Mulish-Regular",
-        fontSize: 20,
+        fontSize: totalSize(2.5),
         marginTop: 50,
         marginBottom: 20,
     },
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         width: "100%",
         flexDirection: "row",
-        paddingHorizontal: 20,
+        //paddingHorizontal: 20,
         paddingVertical: 10,
     },
     button: {
@@ -199,17 +198,17 @@ const styles = StyleSheet.create({
         width: 250,
         height: 40,
         marginBottom: 20,
+        marginTop: 50,
     },
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     buttonAdd: {
         backgroundColor: constants.colors.background,
         height: 70,
-        width: "30%",
-        minWidth: 95,
+        width: width(28),
         borderColor: constants.colors.PINK,
         borderRadius: 10,
         borderWidth: 1.5,

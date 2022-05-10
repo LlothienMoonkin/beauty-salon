@@ -6,6 +6,7 @@ import logo from "../../../assets/user-avatar.jpg";
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {totalSize, width} from "react-native-dimension";
 
 export default class Profile extends React.Component {
     listeners = [];
@@ -89,7 +90,7 @@ export default class Profile extends React.Component {
     renderHeader = () => {
         return(
             <HStack bg={constants.colors.PINK} px="5" py="3" justifyContent="space-between" alignItems="center" w="100%" h="55" position="absolute">
-                <Text color="white" fontSize="20" style={styles.latoHeader}>
+                <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                     Профиль
                 </Text>
             </HStack>
@@ -179,26 +180,26 @@ const styles = StyleSheet.create({
     },
     textSemiBold: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 22,
+        fontSize: totalSize(2.5),
         marginVertical: 5,
         textAlign: "center",
         paddingHorizontal: 20,
     },
     textSemiBoldGrey: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginVertical: 5,
         color: constants.colors.GREY,
     },
     textSemiBoldDarkGrey: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginVertical: 5,
         color: constants.colors.GREY_DARK
     },
     textSemiBoldAdmin: {
         fontFamily: "Mulish-SemiBold",
-        fontSize: 14,
+        fontSize: totalSize(1.8),
         marginVertical: 5,
         color: constants.colors.GREY_DARK
     },
@@ -211,17 +212,17 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     userImage: {
-        width: 125,
-        height: 125,
+        width: width(30),
+        height: width(30),
         borderRadius: 25,
         //marginBottom: 20,
     },
     containerImage: {
-        width: 125,
-        height: 125,
+        width: width(30),
+        height: width(30),
         marginBottom: 20,
     },
 })

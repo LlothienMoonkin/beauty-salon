@@ -6,7 +6,7 @@ import {
     ToastAndroid,
     DeviceEventEmitter,
     Platform,
-    TouchableWithoutFeedback, ScrollView
+    TouchableWithoutFeedback, ScrollView, SafeAreaView
 } from "react-native";
 import {Box, Button, HStack, Icon, IconButton, KeyboardAvoidingView, Modal, Select, Spinner, Text} from "native-base";
 import constants from "../../config/styles";
@@ -14,6 +14,7 @@ import {Ionicons} from "@expo/vector-icons";
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {ButtonSpinner, FormTextInput} from "../../components";
+import {height, totalSize} from "react-native-dimension";
 
 export default class AddServices extends React.Component {
     listeners = [];
@@ -117,7 +118,7 @@ export default class AddServices extends React.Component {
             <HStack bg={constants.colors.PINK} py="3" justifyContent="space-between" alignItems="center" w="100%" h="55" position="absolute">
                 <Box flexDirection="row" alignItems="center">
                     <IconButton icon={<Icon size="lg" as={Ionicons} name="arrow-back-outline" color="white" />} onPress={this.goToMain}/>
-                    <Text color="white" fontSize="20" style={styles.latoHeader}>
+                    <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                         Услуги
                     </Text>
                 </Box>
@@ -150,12 +151,9 @@ export default class AddServices extends React.Component {
         }
 
         return(
-            <KeyboardAvoidingView
-                style={styles.container}
-                behavior={Platform.OS === "ios" ? "padding" : undefined}
-            >
+            <View style={styles.container}>
                 {this.renderHeader()}
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <ScrollView style={{flex: 1, width: "100%"}} contentContainerStyle={{alignItems: "center", minHeight: 100}}>
                     <View style={styles.form}>
                         <FormTextInput
                             value={title}
@@ -167,7 +165,7 @@ export default class AddServices extends React.Component {
                             onBlur={this.handleTitleBlur}
                             error={titleError}
                             blurOnSubmit={Platform.OS === "ios"}
-                            style={{marginBottom: 5, width: "70%"}}
+                            style={{marginBottom: 5, width: "70%", marginTop: 10}}
                         />
 
                         <FormTextInput
@@ -198,33 +196,35 @@ export default class AddServices extends React.Component {
                             multiline={true}
                         />
                     </View>
-                </TouchableWithoutFeedback>
+                </ScrollView>
 
-                <ButtonSpinner
-                    label={'СОЗДАТЬ'}
-                    onPress={this.addService}
-                    disabled={!title || !description || !price}
-                    loading={loading}
-                    style={{width: "80%", marginBottom: 50}}
-                />
-            </KeyboardAvoidingView>
+                <View style={{width: "70%", marginBottom: 20}}>
+                    <ButtonSpinner
+                        label={'СОЗДАТЬ'}
+                        onPress={this.addService}
+                        disabled={!title || !description || !price}
+                        loading={loading}
+                    />
+                </View>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        //flex: 1,
+        height: height(100),
         backgroundColor: constants.colors.background,
         alignItems: "center",
-        paddingTop: 75,
+        paddingTop: 55,
     },
     latoHeader: {
         fontFamily: "Lato-Regular",
     },
     text: {
         fontFamily: "Mulish-Regular",
-        fontSize: 16,
+        fontSize: totalSize(2),
         marginTop: 10,
         marginBottom: 20,
         color: constants.colors.GREY,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     form: {
         flex: 1,

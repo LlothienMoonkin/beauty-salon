@@ -15,6 +15,7 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
 import axios from "../../helpers/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {totalSize} from "react-native-dimension";
 
 export default class SignUpForService extends React.Component {
     listeners = [];
@@ -237,7 +238,7 @@ export default class SignUpForService extends React.Component {
         return(
             <HStack bg={constants.colors.PINK} py="3" justifyContent="flex-start" alignItems="center" w="100%" h="55" position="absolute">
                 <IconButton icon={<Icon size="lg" as={Ionicons} name="arrow-back-outline" color="white" />} onPress={() => this.props.navigation.goBack()}/>
-                <Text color="white" fontSize="20" style={styles.latoHeader}>
+                <Text color="white" fontSize={totalSize(2.5)} style={styles.latoHeader}>
                     {name}
                 </Text>
             </HStack>
@@ -371,7 +372,7 @@ const styles = StyleSheet.create({
     description: {
         width: "100%",
         fontFamily: "Mulish-Regular",
-        fontSize: 16,
+        fontSize: totalSize(2),
         //textAlign: "center",
         paddingHorizontal: 20,
         marginBottom: 10,
@@ -381,7 +382,7 @@ const styles = StyleSheet.create({
     },
     textHeader: {
         fontFamily: "Mulish-Regular",
-        fontSize: 20,
+        fontSize: totalSize(2.5),
         marginTop: 20,
         marginBottom: 20,
     },
@@ -410,10 +411,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         flexDirection: "row",
     },
-    textField: {
-        fontSize: 14,
-        fontFamily: "Mulish-Regular",
-    },
     button: {
         backgroundColor: constants.colors.PINK,
         width: 250,
@@ -423,7 +420,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: constants.colors.white,
         fontFamily: "Mulish-Bold",
-        fontSize: 16,
+        fontSize: totalSize(2),
     },
     roundButton: {
         backgroundColor: constants.colors.PINK,

@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import {Box, Input} from 'native-base';
 import constants from "../../config/styles";
+import {totalSize} from "react-native-dimension";
 
 
 class FormTextInput extends React.Component {
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    fontSize: 14,
+    fontSize: totalSize(1.8),
     ...Platform.select({
       ios: {
         borderColor: constants.colors.GREY,
